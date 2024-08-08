@@ -1,0 +1,66 @@
+<script>
+    //a) Ler um vetor com as notas da avaliacao 1 e outro com as notas da avaliacao 2.
+
+    var n = parseInt(prompt('Digite a quantidade de notas AV1/AV2'))
+
+    var v_av1 = new Array(n)
+    var v_av2 = new Array(n)
+
+    //b) Informar as maiores e menores notas
+    
+    for(i=0;i<v_av1.length;i++){
+        v_av1[i] = parseFloat(prompt(`Nota do aluno ${i} (AV1)`))
+
+        if(i==0){
+            var maior_av1 = v_av1[i]
+            var menor_av1 = v_av1[i]
+        } else{
+            if(v_av1[i] > maior_av1){
+                maior_av1 = v_av1[i]
+            }
+            if(v_av1[i] < menor_av1){
+                menor_av1 = v_av1[i]
+            }
+        }
+    }
+    document.write(`Maior nota AV1: ${maior_av1} <br> <br>`)
+    document.write(`Menor nota AV1: ${menor_av1}<br> <br>`)
+
+    for(i=0;i<v_av2.length;i++){
+        v_av2[i] = parseFloat(prompt(`Nota do aluno ${i} (AV2)`))
+
+        if(i==0){
+            var maior_av2 = v_av2[i]
+            var menor_av2 = v_av2[i]
+        } else{
+            if(v_av2[i] > maior_av2){
+                maior_av2 = v_av2[i]
+            }
+            if(v_av2[i] < menor_av2){
+                menor_av2 = v_av2[i]
+            }
+        }
+    }
+    document.write(`Maior nota AV2: ${maior_av2} <br> <br>`)
+    document.write(`Menor nota AV2: ${menor_av2} <br> <br>`)
+
+    //c) Calcular a media de notas da turma. A media da devera ser apresentada da menor para a maior (ou seja, em ordem crescente)
+    var v_media = new Array(n)
+    var aux 
+    
+    for(i=0;i<v_media.length;i++){
+        v_media[i] = ((v_av1[i] + v_av2[i]) / 2).toFixed(1)
+    }
+
+    for(i=0;i<v_media.length-1;i++){
+        for(j=0; j<v_media.length-1-i;j++){
+            if(v_media[j] > v_media[j+1]){
+                aux = v_media[j]
+                v_media[j] = v_media[j+1]
+                v_media[j+1] = aux
+            }
+        }
+    }
+    document.write(`Medias = ${v_media}`)
+    //
+</script>
