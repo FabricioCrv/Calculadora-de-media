@@ -1,10 +1,16 @@
+//Fabricio Garcia de Carvalho
+//Carlos Eduardo Silva Rodrigues
+
+<meta charset="UTF-8">
 <script>
+    
     //a) Ler um vetor com as notas da avaliacao 1 e outro com as notas da avaliacao 2.
 
     var n = parseInt(prompt('Digite a quantidade de notas AV1/AV2'))
 
     var v_av1 = new Array(n)
     var v_av2 = new Array(n)
+    
 
     //b) Informar as maiores e menores notas
     
@@ -46,14 +52,14 @@
 
     //c) Calcular a media de notas da turma. A media da devera ser apresentada da menor para a maior (ou seja, em ordem crescente)
     var v_media = new Array(n)
-    var aux 
+    var aux
     
     for(i=0;i<v_media.length;i++){
         v_media[i] = ((v_av1[i] + v_av2[i]) / 2).toFixed(1)
     }
 
     for(i=0;i<v_media.length-1;i++){
-        for(j=0; j<v_media.length-1-i;j++){
+        for(j=0;j<v_media.length-1-i;j++){
             if(v_media[j] > v_media[j+1]){
                 aux = v_media[j]
                 v_media[j] = v_media[j+1]
@@ -61,6 +67,62 @@
             }
         }
     }
-    document.write(`Medias = ${v_media}`)
-    //
-</script>
+
+    document.write(`Medias = ${v_media} <br> <br>`)
+    //d) Informar a maior media e a menor media da turma.
+
+    for (i=0;i<v_media.length;i++){
+        if(i==0) {
+        var maiorM = v_media[i]
+        var menorM = v_media[i]
+    } else {
+        if(v_media[i]>maiorM){
+            maiorM = v_media[i]
+        } if (v_media[i]<menorM){
+            menorM = v_media[i]
+        }
+    }
+    }
+    document.write(`Maior Média: ${maiorM} <br> <br>`)
+    document.write(`Menor Média: ${menorM} <br> <br>`)
+    //e) Informar quantos alunos foram aprovados e quantos estao em recuperacao, apresentar um novo vetor com medias inferior a 5,0 dos alunos em recuperacao.
+
+    var reprovados = 0
+    var aprovados = 0
+    var recuperacao = []
+
+    for(i=0;i<v_media.length;i++) {
+        if(v_media[i] < 5) {
+            reprovados++
+        } else {
+            aprovados++
+        }
+
+        if(v_media[i] < 5) {
+            recuperacao[recuperacao.length] = v_media[i]
+        }
+    }
+
+    
+    document.write(`Alunos Aprovados = ${aprovados} <br> <br>`)
+    document.write(`Alunos Recuperação = ${reprovados} <br> <br>`)
+    document.write(`Recuperações = ${recuperacao} <br> <br>`)
+
+    //f) Calular a media do vetor da media da AV1 e AV2 dos alunos em recuperacao com o vetor de notas da recuperacao. Apresentar quantos alunos foram aprovados
+    var v_avRecuperacao = new Array (recuperacao.length)
+    var aprovadosRecuperacao = 0
+    var valorFinalRecuperacao = 0
+
+    if(reprovados >= 1) {
+
+        for(i=0;i<v_avRecuperacao.length;i++){
+        v_avRecuperacao[i] = parseFloat(prompt(`Nota do aluno ${i} (Recuperação)`))
+        valorFinalRecuperacao = (parseFloat(v_avRecuperacao[i]) + parseFloat(recuperacao[i])) / 2
+        if(valorFinalRecuperacao >= 5) {
+            aprovadosRecuperacao++
+        }
+    }
+}
+   
+
+    document.write(`Aprovados nas Recuperações = ${aprovadosRecuperacao} <br> <br>`)
